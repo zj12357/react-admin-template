@@ -1,8 +1,31 @@
 .m-header-box {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 99;
-    background: $primary-color !important;
+   
+    .m-content-box{
+        min-height: auto;
+    }
+    .m-nav-box{
+        width: 100%;
+        @include flexBetweenCenter();
+        .m-nav-route-name{
+            font-size: 14px;
+            color: #fff;
+        }
+        .m-user-dropdown{
+            cursor: pointer;
+            height: 100%;
+            @include flexCenter();
+            .user-dropdown-content{
+                @include flexCenter();
+                .user-name{
+                    font-size: 14px;
+                    color: #fff;
+                    margin:0 8px 0 4px;
+                }
+                .translation-icon{
+                    height: 100%;
+                }
+            }
+            
+        }
+    }
 }

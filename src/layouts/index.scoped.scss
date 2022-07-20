@@ -1,5 +1,7 @@
-.m-content-box {
+.m-content-layout-box {
     width: 100%;
-    padding-top: 64px;
     overflow-y: auto;
+    .m-content-box {
+        min-height: auto;
+    }
 }
