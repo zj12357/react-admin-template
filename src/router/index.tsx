@@ -6,9 +6,10 @@ import {
     WrapperRouteWithOutLayoutComponent,
 } from './config';
 import LoginPage from '@/pages/Login';
-import LayoutPage from '@/layouts';
+import BasicLayout from '@/layouts/BasicLayout';
 
 const Home = React.lazy(() => import('../pages/Home'));
+const Dashboard = React.lazy(() => import('../pages/Dashboard'));
 
 const NotFound = React.lazy(() => import('../pages/NotFound'));
 
@@ -16,14 +17,24 @@ const routeList: RouteObject[] = [
     {
         path: '/',
         element: (
-            <WrapperRouteComponent element={<LayoutPage />} titleId="" auth />
+            <WrapperRouteComponent element={<BasicLayout />} titleId="" auth />
         ),
         children: [
+            {
+                path: 'dashboard/home',
+                element: (
+                    <WrapperRouteComponent
+                        element={<Home />}
+                        titleId="工作台"
+                        auth
+                    />
+                ),
+            },
             {
                 path: 'dashboard/workbeach',
                 element: (
                     <WrapperRouteComponent
-                        element={<Home />}
+                        element={<Dashboard />}
                         titleId="工作台"
                         auth
                     />

@@ -1,12 +1,14 @@
 ## 📦 使用
 
-$  yarn
-$  yarn start
+$ yarn
+
+$ yarn start
 
 ## 🔨 构建
 
-$  yarn build:prod(生产) 
-$  yarn build:test(测试)
+$ yarn build:prod(生产)
+
+$ yarn build:test(测试)
 
 ## 🖥 配置
 
@@ -16,11 +18,9 @@ $  yarn build:test(测试)
 
 ## 环境要求
 
-node 版本 v16.13.2
+node 版本 v16.0 以内
 统一使用 yarn 安装项目
 yarn 源地址：https://registry.yarnpkg.com
-
-
 
 -   💎 **Hooks**: 使用最新的 react hooks API 代替传统的 class API
 -   💡 **TypeScript**: 应用程序级 JavaScript 的语言
