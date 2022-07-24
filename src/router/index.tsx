@@ -8,9 +8,8 @@ import {
 import LoginPage from '@/pages/Login';
 import BasicLayout from '@/layouts/BasicLayout';
 
-const Home = React.lazy(() => import('../pages/Home'));
+const Home = React.lazy(() => import('../pages/WelCome'));
 const Dashboard = React.lazy(() => import('../pages/Dashboard'));
-
 const NotFound = React.lazy(() => import('../pages/NotFound'));
 
 const routeList: RouteObject[] = [
@@ -21,7 +20,7 @@ const routeList: RouteObject[] = [
         ),
         children: [
             {
-                path: 'dashboard/home',
+                path: '/welcome',
                 element: (
                     <WrapperRouteComponent
                         element={<Home />}
@@ -31,7 +30,7 @@ const routeList: RouteObject[] = [
                 ),
             },
             {
-                path: 'dashboard/workbeach',
+                path: '/dashboard/workbeach',
                 element: (
                     <WrapperRouteComponent
                         element={<Dashboard />}
@@ -43,7 +42,7 @@ const routeList: RouteObject[] = [
         ],
     },
     {
-        path: 'login',
+        path: '/login',
         element: (
             <WrapperRouteWithOutLayoutComponent
                 element={<LoginPage />}
@@ -52,7 +51,7 @@ const routeList: RouteObject[] = [
         ),
     },
     {
-        path: '*',
+        path: '*' || '/404',
         element: (
             <WrapperRouteWithOutLayoutComponent
                 element={<NotFound />}
