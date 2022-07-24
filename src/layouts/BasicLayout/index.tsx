@@ -6,7 +6,13 @@ import {
     SettingDrawer,
     PageLoading,
 } from '@ant-design/pro-components';
-import { Outlet, useNavigate, useLocation } from 'react-router-dom';
+import {
+    Outlet,
+    useNavigate,
+    useLocation,
+    Location,
+    matchPath,
+} from 'react-router-dom';
 import Header from '../components/Header';
 import routeInfo from '@/config/route';
 import { RouteIfoItemType } from '@/config/type';
@@ -21,6 +27,7 @@ const BasicLayout: FC<BasicLayoutProps> = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    //处理面包屑导航
     const flatBeadcrumbTree = (routeList: RouteIfoItemType[]): any[] => {
         return routeList.reduce(
             (prev: RouteIfoItemType[], item: RouteIfoItemType) => {
@@ -39,11 +46,64 @@ const BasicLayout: FC<BasicLayoutProps> = (props) => {
         );
     };
 
-    const pageBreadcrumbList = flatBeadcrumbTree(
+    const flatBreadcrumbList = flatBeadcrumbTree(
         routeInfo.route.routes ?? [],
     ) as PageFlatBreadcrumbItem[];
 
-    console.log(pageBreadcrumbList, 1111);
+    const getBreadcrumbs = (
+        flattenRoutes: PageFlatBreadcrumbItem[],
+        location: Location,
+    ) => {
+        let matches: PageFlatBreadcrumbItem[] = [];
+        location.pathname
+
+            .split('?')[0]
+            .split('/')
+
+            .reduce((prev, curSection) => {
+                const pathSection = `${prev}/${curSection}`;
+
+                const breadcrumb = getBreadcrumb(
+                    flattenRoutes,
+                    curSection,
+                    pathSection,
+                );
+
+                matches.push(breadcrumb);
+
+                return pathSection;
+            });
+        return matches;
+    };
+
+    const getBreadcrumb = (
+        flattenRoutes: PageFlatBreadcrumbItem[],
+        curSection: string,
+        pathSection: string,
+    ) => {
+        const matchRoute = flattenRoutes.find((ele) => {
+            const { breadcrumbName, path } = ele;
+            if (!breadcrumbName || !path) {
+                throw new Error(
+                    'Router中的每一个route必须包含 `path` 以及 `breadcrumbName` 属性',
+                );
+            }
+            return matchPath(pathSection, path);
+        });
+
+        if (matchRoute) {
+            return {
+                breadcrumbName: matchRoute.breadcrumbName || curSection,
+                path: matchRoute.path,
+            };
+        }
+
+        return {
+            breadcrumbName: pathSection === '/' ? '首页' : curSection,
+            path: pathSection,
+        };
+    };
+    const breadcrumbList = getBreadcrumbs(flatBreadcrumbList, location);
 
     return (
         <div
@@ -54,6 +114,7 @@ const BasicLayout: FC<BasicLayoutProps> = (props) => {
         >
             <ProLayout
                 {...routeInfo}
+                {...settings}
                 location={{
                     pathname: location.pathname,
                 }}
@@ -101,11 +162,11 @@ const BasicLayout: FC<BasicLayoutProps> = (props) => {
             >
                 <PageContainer
                     header={{
-                        title: pageBreadcrumbList[pageBreadcrumbList.length - 1]
+                        title: breadcrumbList[breadcrumbList.length - 1]
                             .breadcrumbName,
                         ghost: true,
                         breadcrumb: {
-                            routes: pageBreadcrumbList,
+                            routes: breadcrumbList,
                         },
                     }}
                 >

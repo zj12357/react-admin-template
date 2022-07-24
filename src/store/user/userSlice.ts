@@ -14,7 +14,7 @@ const initialState: UserState = {
 };
 
 export const userAsync = createAsyncThunk('user/fetchUser', async () => {
-    const response = await Promise.resolve('');
+    const response = await Promise.resolve('token');
 
     return response;
 });

@@ -16,10 +16,13 @@ export const errorScreenSlice = createSlice({
     name: 'errorScreen',
     initialState,
     reducers: {
-        showErrorScreen: (state, action: PayloadAction<ErrorScreenType>) => {
+        showErrorScreen: (
+            state: ErrorScreenState,
+            action: PayloadAction<ErrorScreenType>,
+        ) => {
             state.type = action.payload;
         },
-        hideErrorScreen: (state) => {
+        hideErrorScreen: (state: ErrorScreenState) => {
             state.type = null;
         },
     },

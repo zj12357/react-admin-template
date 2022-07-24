@@ -13,7 +13,7 @@ const RouteComponent = (props: any) => {
     // props接收前面所有高阶组件传过来的值，按需传给要渲染的子组件
     return (
         <Router>
-            <RenderRouter></RenderRouter>
+            <RenderRouter {...props}></RenderRouter>
         </Router>
     );
 };

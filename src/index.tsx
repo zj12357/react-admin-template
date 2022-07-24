@@ -6,13 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import '@/locales'; //国际化
 import './assets/css/base.css';
 import './assets/scss/global.scss';
-import 'antd/dist/antd.variable.min.css'; //antd 动态主题
-// import './assets/theme/index.less';
 
 ReactDOM.render(
-    // <React.StrictMode> //react中使用antd警告,是因为 react中的严格模式
-    <App />,
-    // </React.StrictMode>,
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
     document.getElementById('root'),
 );
 
