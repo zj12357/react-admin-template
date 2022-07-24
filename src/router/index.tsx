@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { RouteObject } from 'react-router';
 import { useRoutes } from 'react-router-dom';
+import Redirect from './Redirect';
 import {
     WrapperRouteComponent,
     WrapperRouteWithOutLayoutComponent,
@@ -29,10 +30,14 @@ const routeProps = (props: any) => {
                     element: (
                         <WrapperRouteComponent
                             element={<WelCome {...props} />}
-                            titleId="工作台"
+                            titleId="欢迎"
                             auth
                         />
                     ),
+                },
+                {
+                    path: '/dashboard',
+                    element: <Redirect to="/dashboard/workbeach" />,
                 },
                 {
                     path: '/dashboard/workbeach',

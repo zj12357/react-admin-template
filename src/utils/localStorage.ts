@@ -1,32 +1,12 @@
-/**
- * @description: localStorage ;
- * @param {*}
- * @return {*}
- * @author: Full
- */
+import localforage from 'localforage';
+export function setLocalStorage(key: string, value: string) {
+    localforage.setItem(key, value);
+}
 
-const formValueObj = (value: any) => ({ value });
-const getRealVal = (obj: any) => obj && obj.value;
+export function getLocalStorage(key: string) {
+    return localforage.getItem(key);
+}
 
-export const Cache = {
-    localGet(key: any) {
-        if (window.localStorage.getItem(key)) {
-            return getRealVal(
-                JSON.parse(window.localStorage.getItem(key) || ''),
-            );
-        } else {
-            return null;
-        }
-    },
-    localSet(key: any, value: any) {
-        window.localStorage.setItem(key, JSON.stringify(formValueObj(value)));
-    },
-    localRemove(key: any) {
-        window.localStorage.removeItem(key);
-    },
-    localClear() {
-        window.localStorage.clear();
-    },
-};
-
-export default Cache;
+export function removeLocalStorage(key: string) {
+    return localforage.removeItem(key);
+}

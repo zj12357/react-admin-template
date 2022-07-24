@@ -5,21 +5,47 @@
  * @author: Full
  */
 
-export const isValidUsername = (str: string) =>
-    ['admin', 'editor'].indexOf(str.trim()) >= 0;
+//网址
+export const isWebURL =
+    /^(((ht|f)tps?):\/\/)?([^!@#$%^&*?.\s-]([^!@#$%^&*?.\s]{0,63}[^!@#$%^&*?.\s])?\.)+[a-z]{2,6}\/?/;
 
-export const isExternal = (path: string) =>
-    /^(https?:|mailto:|tel:)/.test(path);
+//24小时制时间
+export const is24Hours = /^(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d$/;
 
-export const isArray = (arg: any) => {
-    if (typeof Array.isArray === 'undefined') {
-        return Object.prototype.toString.call(arg) === '[object Array]';
-    }
-    return Array.isArray(arg);
-};
+//24小时制时间
+export const is12Hours = /^(?:1[0-2]|0?[1-9]):[0-5]\d:[0-5]\d$/;
 
-export const isValidURL = (url: string) => {
-    const reg =
-        /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
-    return reg.test(url);
-};
+//base64格式
+export const isBase64 =
+    /^\s*data:(?:[a-z]+\/[a-z0-9-+.]+(?:;[a-z-]+=[a-z0-9-]+)?)?(?:;base64)?,([a-z0-9!$&',()*+;=\-._~:@/?%\s]*?)\s*$/i;
+
+//数字/货币金额（支持负数、千分位分隔符）
+export const isAmount =
+    /(?:^[1-9]([0-9]+)?(?:\.[0-9]{1,2})?$)|(?:^(?:0)$)|(?:^[0-9]\.[0-9](?:[0-9])?$)/;
+
+//银行卡号
+export const isBankCard =
+    /(?:^[1-9]([0-9]+)?(?:\.[0-9]{1,2})?$)|(?:^(?:0)$)|(?:^[0-9]\.[0-9](?:[0-9])?$)/;
+
+//中文姓名
+export const isChineseName = /^(?:[\u4e00-\u9fa5·]{2,16})$/;
+
+//英文姓名
+export const isEnglishName = /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/;
+
+//手机号
+export const isPhoneNumber = /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/;
+
+//邮箱
+export const isEmail =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+//身份证号, 支持1/2代(15位/18位数字)
+export const idNumber =
+    /^\d{6}((((((19|20)\d{2})(0[13-9]|1[012])(0[1-9]|[12]\d|30))|(((19|20)\d{2})(0[13578]|1[02])31)|((19|20)\d{2})02(0[1-9]|1\d|2[0-8])|((((19|20)([13579][26]|[2468][048]|0[48]))|(2000))0229))\d{3})|((((\d{2})(0[13-9]|1[012])(0[1-9]|[12]\d|30))|((\d{2})(0[13578]|1[02])31)|((\d{2})02(0[1-9]|1\d|2[0-8]))|(([13579][26]|[2468][048]|0[048])0229))\d{2}))(\d|X|x)$/;
+
+//小数
+export const isDecimal = /^\d+\.\d+$/;
+
+//数字和字母组成
+export const isNumberLetter = /^[A-Za-z0-9]+$/;

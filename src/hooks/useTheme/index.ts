@@ -6,7 +6,7 @@
  */
 
 import localforage from 'localforage';
-import { initTheme } from '@/common/theme';
+import { initTheme } from '@/config/theme';
 
 import { useEffect, useState } from 'react';
 
