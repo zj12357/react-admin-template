@@ -16,7 +16,7 @@ const useStyles = createUseStyles({
     },
 });
 
-export default function withOfflineMask<Props>(
+export default function WithOfflineMask<Props>(
     WrappedComponent: ComponentType<Props>,
 ) {
     const Component: FC<Props> = (props) => {
@@ -55,7 +55,7 @@ export default function withOfflineMask<Props>(
         );
     };
 
-    Component.displayName = `withOfflineMask(${
+    Component.displayName = `WithOfflineMask(${
         WrappedComponent.displayName || WrappedComponent.name
     })`;
 

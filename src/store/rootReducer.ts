@@ -6,12 +6,12 @@
  */
 import { combineReducers } from '@reduxjs/toolkit';
 
-import homeSlice from './home/homeSlice';
+import commonSlice from './common/commonSlice';
 import userSlice from './user/userSlice';
 import errorScreenSlice from './errorScreen/errorScreenSlice';
 
 const rootReducer = combineReducers({
-    home: homeSlice,
+    common: commonSlice,
     user: userSlice,
     errorScreen: errorScreenSlice,
 });

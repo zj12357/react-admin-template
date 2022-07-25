@@ -8,6 +8,7 @@ import {
 } from './config';
 import LoginPage from '@/pages/Login';
 import BasicLayout from '@/layouts/BasicLayout';
+import UserLayout from '@/layouts/UserLayout';
 
 const WelCome = React.lazy(() => import('../pages/WelCome'));
 const Dashboard = React.lazy(() => import('../pages/Dashboard'));
@@ -52,22 +53,33 @@ const routeProps = (props: any) => {
             ],
         },
         {
-            path: '/login',
+            path: '/user',
             element: (
                 <WrapperRouteWithOutLayoutComponent
-                    element={<LoginPage {...props} />}
-                    titleId="登录"
+                    element={<UserLayout {...props} />}
+                    titleId=""
                 />
             ),
-        },
-        {
-            path: '*' || '/404',
-            element: (
-                <WrapperRouteWithOutLayoutComponent
-                    element={<NotFound {...props} />}
-                    titleId="404"
-                />
-            ),
+            children: [
+                {
+                    path: '/user/login',
+                    element: (
+                        <WrapperRouteWithOutLayoutComponent
+                            element={<LoginPage {...props} />}
+                            titleId="登录"
+                        />
+                    ),
+                },
+                {
+                    path: '*' || '/user/404',
+                    element: (
+                        <WrapperRouteWithOutLayoutComponent
+                            element={<NotFound {...props} />}
+                            titleId="404"
+                        />
+                    ),
+                },
+            ],
         },
     ];
     return routeList;

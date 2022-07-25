@@ -5,7 +5,7 @@ import { AnyAction, Store } from '@reduxjs/toolkit';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistor } from '@/store';
 
-export default function withReduxProvider<Props, Action = AnyAction>(
+export default function WithReduxProvider<Props, Action = AnyAction>(
     store: Store<Action>,
 ) {
     return (WrappedComponent: ComponentType<Props>) => {
@@ -17,7 +17,7 @@ export default function withReduxProvider<Props, Action = AnyAction>(
             </Provider>
         );
 
-        Component.displayName = `withReduxProvider(${
+        Component.displayName = `WithReduxProvider(${
             WrappedComponent.displayName || WrappedComponent.name
         })`;
 

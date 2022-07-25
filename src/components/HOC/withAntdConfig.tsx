@@ -7,7 +7,7 @@ import moment from 'moment';
 
 moment.locale('zh-cn');
 
-export default function withAntdConfig<Props>(
+export default function WithAntdConfig<Props>(
     WrappedComponent: ComponentType<Props>,
 ) {
     const Component: ComponentType<Props> = (props) => (
@@ -16,7 +16,7 @@ export default function withAntdConfig<Props>(
         </ConfigProvider>
     );
 
-    Component.displayName = `withAntdConfig(${
+    Component.displayName = `WithAntdConfig(${
         WrappedComponent.displayName || WrappedComponent.name
     })`;
 

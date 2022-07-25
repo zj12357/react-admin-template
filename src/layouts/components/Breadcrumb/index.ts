@@ -76,3 +76,4 @@ const getBreadcrumb = (
     };
 };
 const breadcrumbList = getBreadcrumbs(flatBreadcrumbList, window.location);
+export default { breadcrumbList };

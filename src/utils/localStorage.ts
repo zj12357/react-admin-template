@@ -1,12 +1,12 @@
 import localforage from 'localforage';
-export function setLocalStorage(key: string, value: string) {
-    localforage.setItem(key, value);
-}
+export const setLocalStorage = (key: string, value: string) => {
+    return localforage.setItem(key, value);
+};
 
-export function getLocalStorage(key: string) {
+export const getLocalStorage = (key: string) => {
     return localforage.getItem(key);
-}
+};
 
-export function removeLocalStorage(key: string) {
+export const removeLocalStorage = (key: string) => {
     return localforage.removeItem(key);
-}
+};

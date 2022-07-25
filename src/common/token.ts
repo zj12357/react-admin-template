@@ -5,18 +5,16 @@
  * @date: Do not edit
  */
 
-import localforage from 'localforage';
-
 const tokenKey = 'token';
 
 export default Object.freeze({
-    clearToken() {
-        return localforage.removeItem(tokenKey);
+    clearToken: () => {
+        window.localStorage.removeItem(tokenKey);
     },
-    setToken(data: string | null) {
-        return localforage.setItem(tokenKey, data || null);
+    setToken: (data: string) => {
+        window.localStorage.setItem(tokenKey, data);
     },
-    getToken() {
-        return localforage.getItem(tokenKey);
+    getToken: () => {
+        return window.localStorage.getItem(tokenKey);
     },
 });
