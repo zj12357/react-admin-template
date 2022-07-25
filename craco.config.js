@@ -85,7 +85,7 @@ module.exports = {
         hot: true,
         overlay: true,
         proxy: {
-            '/excuse': {
+            '/api': {
                 target: REACT_APP_API_URL,
                 changeOrigin: true,
                 logLevel: 'debug',
@@ -100,16 +100,7 @@ module.exports = {
     },
     //配置别名
     webpack: {
-        extensions: [
-            '.js',
-            '.ts',
-            '.jsx',
-            '.tsx',
-            '.json',
-            '.css',
-            '.less',
-            '.scss',
-        ],
+        extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
         alias: {
             '@': resolve('src'),
         },

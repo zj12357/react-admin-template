@@ -85,20 +85,6 @@ export function getScrollHeight() {
 }
 
 /**
- * @Description:检查手机号  ;
- * @Param:  ;
- * @Return:  ;
- * @Author: Full
- */
-export function isMobile(value: string): boolean {
-    value = value.replace(/[^-|\d]/g, '');
-    return (
-        /^((\+86)|(86))?(1)\d{10}$/.test(value) ||
-        /^0[0-9-]{10,13}$/.test(value)
-    );
-}
-
-/**
  * @Description:  检查时间;
  * @Param:  ;
  * @Return:  ;
@@ -197,11 +183,14 @@ export const toggleClass = (ele: HTMLElement, className: string) => {
 };
 
 /**
- * @description: 检查是否是方法 ;
- * @param {any} obj
- * @return {*}
- * @author: Full
+ * @Description:  是否是手机设备;
+ * @Param:  ;
+ * @Return:  ;
+ * @Author: Full
  */
-export function isFunction(obj: any): obj is Function {
-    return typeof obj === 'function';
-}
+
+export const isMobile = () => {
+    const regMobileAll =
+        /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i;
+    return regMobileAll.test(window.navigator.userAgent);
+};

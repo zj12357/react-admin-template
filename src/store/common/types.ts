@@ -1,3 +1,3 @@
-export interface HomeState {
+export interface CommonState {
     config: string;
 }

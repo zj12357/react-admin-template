@@ -6,14 +6,14 @@
  */
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '..';
-import { getConfig } from '@/api/home';
-import { HomeState } from './types';
+import { getConfig } from '@/api/config';
+import { CommonState } from './types';
 
-const initialState: HomeState = {
+const initialState: CommonState = {
     config: '',
 };
 
-export const commonAsync = createAsyncThunk('home/fetchHome', async () => {
+export const commonAsync = createAsyncThunk('home/fetchConfig', async () => {
     const response = await getConfig();
     return '';
 });
@@ -30,7 +30,7 @@ export const homeSlice = createSlice({
             .addCase(commonAsync.pending, (state) => {})
             .addCase(
                 commonAsync.fulfilled,
-                (state: HomeState, action: PayloadAction<string>) => {
+                (state: CommonState, action: PayloadAction<string>) => {
                     state.config = action.payload ?? '';
                 },
             )

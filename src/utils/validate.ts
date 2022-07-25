@@ -49,3 +49,18 @@ export const isDecimal = /^\d+\.\d+$/;
 
 //数字和字母组成
 export const isNumberLetter = /^[A-Za-z0-9]+$/;
+
+//匹配连续重复的字符
+export const isRepeat = /(.)\1+/;
+
+//正整数，不包含0
+export const isPositiveInteger = /^\+?[1-9]\d*$/;
+
+//负整数，不包含0
+export const isNegativeInteger = /^-[1-9]\d*$/;
+
+//整数
+export const isInteger = /^-?[0-9]\d*$/;
+
+//浮点数
+export const isFloatingPointNumber = /^(-?\d+)(\.\d+)?$/;
