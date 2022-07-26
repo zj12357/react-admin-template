@@ -13,12 +13,12 @@ const initialState: CommonState = {
     config: '',
 };
 
-export const commonAsync = createAsyncThunk('home/fetchConfig', async () => {
+export const commonAsync = createAsyncThunk('common/fetchConfig', async () => {
     const response = await getConfig();
     return '';
 });
 
-export const homeSlice = createSlice({
+export const commonSlice = createSlice({
     name: 'common',
     initialState,
 
@@ -40,4 +40,4 @@ export const homeSlice = createSlice({
 
 export const selectConfig = (state: RootState) => state.common.config;
 
-export default homeSlice.reducer;
+export default commonSlice.reducer;

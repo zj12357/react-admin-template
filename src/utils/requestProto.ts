@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { message } from 'antd';
-import { isMobile } from 'licia';
+import {
+    getLocalStorage,
+    asyncRemoveAllLocalStorage,
+} from '@/utils/localStorage';
 import protoRoot from '@/proto/proto';
 import protobuf from 'protobufjs';
 import NProgress from 'nprogress';
@@ -8,8 +11,7 @@ import 'nprogress/nprogress.css';
 
 NProgress.configure({ showSpinner: false });
 
-const equipment = isMobile() ? 1 : 2;
-const UserToken = localStorage.getItem('token') || '';
+const UserToken = getLocalStorage('token') || '';
 
 // 请求体message
 const PBrequest: any = protoRoot.lookup('resultmodel.Para');
@@ -31,7 +33,7 @@ service.interceptors.request.use(
             config.headers['X-Access-Token'] = UserToken;
         }
         // 设置公共参数
-        // config.params = { device: equipment };
+        // config.params = { ...config.params };
         let data = Object.assign({}, config.data);
         config.data = new Blob(
             [PBrequest.encode(PBrequest.create(data)).finish()],
@@ -61,16 +63,18 @@ service.interceptors.response.use(
         if (res.code !== 200) {
             message.error(res.msg || '请求错误');
             if (
-                res.code === 50008 ||
-                res.code === 50012 ||
-                res.code === 50014
+                res.code === 50001 ||
+                res.code === 50002 ||
+                res.code === 50003
             ) {
                 message.info('你已被登出，请重新登录').then(() => {
-                    localStorage.clear();
-                    window.location.reload();
+                    asyncRemoveAllLocalStorage().then(() => {
+                        window.location.href = '/';
+                        // window.location.reload();
+                    });
                 });
             }
-            // return Promise.reject(new Error(res.msg || "Error"));
+            return Promise.reject(new Error(res.msg || 'Error'));
         } else {
             //处理返回的数据
             const buf = protobuf.util.newBuffer(response.data);

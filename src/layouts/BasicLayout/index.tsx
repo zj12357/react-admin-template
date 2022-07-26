@@ -4,8 +4,8 @@ import {
     PageContainer,
     ProLayout,
     SettingDrawer,
-    PageLoading,
 } from '@ant-design/pro-components';
+import Loading from '@/components/Loading';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import Header from '../Components/Header';
 import routeInfo from '@/config/route';
@@ -76,7 +76,7 @@ const BasicLayout: FC<BasicLayoutProps> = (props) => {
                 rightContentRender={() => <Header></Header>}
             >
                 <PageContainer>
-                    <Suspense fallback={<PageLoading />}>
+                    <Suspense fallback={<Loading />}>
                         <Outlet></Outlet>
                     </Suspense>
                 </PageContainer>

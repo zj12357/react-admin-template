@@ -6,6 +6,7 @@ import './index.scoped.scss';
 type WelcomeProps = {};
 
 const Welcome: FC<WelcomeProps> = (props) => {
+    console.log(props);
     const dispatch = useDispatch();
     const token = useSelector(selectToken);
     const login = () => {
@@ -13,7 +14,7 @@ const Welcome: FC<WelcomeProps> = (props) => {
     };
 
     return (
-        <div className="m-home-box">
+        <div>
             I am Welcome {token}
             <button onClick={login}>登录</button>
         </div>

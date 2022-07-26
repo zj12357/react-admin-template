@@ -1,7 +1,7 @@
 import React, { FC, Suspense } from 'react';
 import { Layout } from 'antd';
 import { Outlet } from 'react-router-dom';
-import { PageLoading } from '@ant-design/pro-components';
+import Loading from '@/components/Loading';
 
 const { Content } = Layout;
 
@@ -15,7 +15,7 @@ const UserLayout: FC<UserLayoutProps> = (props) => {
             }}
         >
             <Content>
-                <Suspense fallback={<PageLoading />}>
+                <Suspense fallback={<Loading />}>
                     <Outlet></Outlet>
                 </Suspense>
             </Content>

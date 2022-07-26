@@ -2,6 +2,7 @@ import React from 'react';
 import { CrownOutlined, SmileOutlined } from '@ant-design/icons';
 import { RouteConfig } from './type';
 
+//配置菜单
 export default {
     route: {
         path: '/',
