@@ -1,23 +1,30 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginFormPage, ProFormText } from '@ant-design/pro-components';
 import { Button } from 'antd';
-import { useAppDispatch } from '@/store/hooks';
-import { login } from '@/store/user/userSlice';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { login, selectStatus } from '@/store/user/userSlice';
 
 type LoginProps = {};
 
 const Login: FC<LoginProps> = (props) => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
+    const loginStatus = useAppSelector(selectStatus);
+
     const onFinish = async (values: any) => {
         console.log('Success:', values);
         dispatch(login());
-        setTimeout(() => {
-            navigate('/', { replace: true });
-        }, 1000);
     };
+
+    useEffect(() => {
+        if (loginStatus === 'success') {
+            setTimeout(() => {
+                navigate('/', { replace: true });
+            }, 100);
+        }
+    }, [loginStatus]);
     return (
         <div
             style={{
