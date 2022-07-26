@@ -69,16 +69,16 @@ export const routeProps = (props: any) => {
                         />
                     ),
                 },
-                {
-                    path: '*' || '/user/404',
-                    element: (
-                        <WrapperRouteWithOutLayoutComponent
-                            element={<NotFound {...props} />}
-                            titleId="404"
-                        />
-                    ),
-                },
             ],
+        },
+        {
+            path: '*' || '/404',
+            element: (
+                <WrapperRouteWithOutLayoutComponent
+                    element={<NotFound {...props} />}
+                    titleId="404"
+                />
+            ),
         },
     ];
     return routeList;

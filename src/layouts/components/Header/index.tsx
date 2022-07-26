@@ -1,12 +1,40 @@
 import React, { FC } from 'react';
-import { Avatar, Button, Space, Statistic } from 'antd';
-import { LikeOutlined, UserOutlined } from '@ant-design/icons';
+import { Avatar, Button, Space, Dropdown, Menu } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
+import { useAppDispatch } from '@/store/hooks';
+import { loginOut } from '@/store/user/userSlice';
 type HeaderProps = {};
 
 const Header: FC<HeaderProps> = (props) => {
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
+    const userLoginOut = () => {
+        dispatch(loginOut());
+        navigate('/user/login');
+    };
+    const menu = (
+        <Menu
+            items={[
+                {
+                    key: '1',
+                    label: <span>个人中心</span>,
+                    icon: <UserOutlined></UserOutlined>,
+                },
+                {
+                    key: '2',
+                    label: <span onClick={userLoginOut}>登出</span>,
+                    icon: <LogoutOutlined />,
+                },
+            ]}
+        />
+    );
     return (
         <div>
-            <Avatar shape="square" size="small" icon={<UserOutlined />} />
+            <Dropdown overlay={menu}>
+                <Avatar size="small" src="https://joeschmoe.io/api/v1/random" />
+            </Dropdown>
         </div>
     );
 };

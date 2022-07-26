@@ -23,7 +23,16 @@ export const userAsync = createAsyncThunk('user/fetchUser', async () => {
 export const userSlice = createSlice({
     name: 'user',
     initialState,
-    reducers: {},
+    reducers: {
+        loginOut: (state: UserState) => {
+            state.token = '';
+            authToken.clearToken();
+        },
+        login: (state: UserState) => {
+            state.token = 'token';
+            authToken.setToken('token');
+        },
+    },
     //extraReducers 处理接口状态，一般是列表加载，loading状态获取，加载成功，加载失败
     extraReducers: (builder) => {
         builder
@@ -44,6 +53,8 @@ export const userSlice = createSlice({
             });
     },
 });
+
+export const { loginOut, login } = userSlice.actions;
 
 export const selectToken = (state: RootState) => state.user.token;
 

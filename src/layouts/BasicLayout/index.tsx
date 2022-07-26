@@ -67,7 +67,7 @@ const BasicLayout: FC<BasicLayoutProps> = (props) => {
                 menuItemRender={(item, dom) => (
                     <div
                         onClick={() => {
-                            navigate(item.path ?? '/user/404');
+                            navigate(item.path ?? '/404');
                         }}
                     >
                         {dom}

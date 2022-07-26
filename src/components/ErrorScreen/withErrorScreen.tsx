@@ -9,7 +9,7 @@ import {
     showErrorScreen,
 } from '@/store/errorScreen/errorScreenSlice';
 
-export default function withErrorScreen<Props>(
+export default function WithErrorScreen<Props>(
     WrappedComponnet: ComponentType<Props>,
 ) {
     const Component: FC<Props> = (props) => {

@@ -1,1 +1,1 @@
-export type LoginType = 'phone' | 'account';
+export type LoginType = 'account';

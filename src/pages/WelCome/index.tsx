@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { selectToken, userAsync } from '@/store/user/userSlice';
 import './index.scoped.scss';
 
@@ -7,8 +7,8 @@ type WelcomeProps = {};
 
 const Welcome: FC<WelcomeProps> = (props) => {
     console.log(props);
-    const dispatch = useDispatch();
-    const token = useSelector(selectToken);
+    const dispatch = useAppDispatch();
+    const token = useAppSelector(selectToken);
     const login = () => {
         dispatch(userAsync());
     };
