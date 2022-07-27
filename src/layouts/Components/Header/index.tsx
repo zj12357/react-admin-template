@@ -1,12 +1,7 @@
 import React, { FC } from 'react';
 import { Avatar, Button, Space, Dropdown, Menu } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import {
-    LogoutOutlined,
-    UserOutlined,
-    CodeOutlined,
-    LockOutlined,
-} from '@ant-design/icons';
+import { LogoutOutlined, CodeOutlined, LockOutlined } from '@ant-design/icons';
 import { useAppDispatch } from '@/store/hooks';
 import { loginOut } from '@/store/user/userSlice';
 import './index.scoped.scss';

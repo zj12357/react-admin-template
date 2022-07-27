@@ -7,10 +7,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '..';
 import { getConfig } from '@/api/config';
-import { CommonState } from './types';
+import { CommonState, DetailPageMenuListItem } from './types';
 
 const initialState: CommonState = {
     config: '',
+    detailPagePath: '',
+    detailPageMenuList: [],
 };
 
 export const commonAsync = createAsyncThunk('common/fetchConfig', async () => {
@@ -22,7 +24,20 @@ export const commonSlice = createSlice({
     name: 'common',
     initialState,
 
-    reducers: {},
+    reducers: {
+        setDetailPagePath: (
+            state: CommonState,
+            action: PayloadAction<string>,
+        ) => {
+            state.detailPagePath = action.payload;
+        },
+        setDetailPageMenuList: (
+            state: CommonState,
+            action: PayloadAction<DetailPageMenuListItem[]>,
+        ) => {
+            state.detailPageMenuList = action.payload;
+        },
+    },
 
     //extraReducers 处理接口状态，一般是列表加载，loading状态获取，加载成功，加载失败
     extraReducers: (builder) => {
@@ -38,6 +53,12 @@ export const commonSlice = createSlice({
     },
 });
 
+export const { setDetailPagePath, setDetailPageMenuList } = commonSlice.actions;
+
 export const selectConfig = (state: RootState) => state.common.config;
+export const selectDetailPagePath = (state: RootState) =>
+    state.common.detailPagePath;
+export const selectDetailPageMenuList = (state: RootState) =>
+    state.common.detailPageMenuList;
 
 export default commonSlice.reducer;

@@ -9,7 +9,12 @@ import LoginPage from '@/pages/Login';
 import BasicLayout from '@/layouts/BasicLayout';
 import UserLayout from '@/layouts/UserLayout';
 
-const WelCome = React.lazy(() => import('../pages/WelCome'));
+const AccountManagement = React.lazy(
+    () => import('../pages/AccountManagement'),
+);
+const AccountDetail = React.lazy(
+    () => import('../pages/AccountManagement/AccountDetail'),
+);
 const Dashboard = React.lazy(() => import('../pages/Dashboard'));
 const NotFound = React.lazy(() => import('../pages/NotFound'));
 
@@ -26,11 +31,21 @@ export const routeProps = (props: any) => {
             ),
             children: [
                 {
-                    path: '/welcome',
+                    path: '/accountManagement',
                     element: (
                         <WrapperRouteComponent
-                            element={<WelCome {...props} />}
-                            titleId="欢迎"
+                            element={<AccountManagement {...props} />}
+                            titleId="户口管理"
+                            auth
+                        />
+                    ),
+                },
+                {
+                    path: '/accountDetail',
+                    element: (
+                        <WrapperRouteComponent
+                            element={<AccountDetail {...props} />}
+                            titleId="户口详情"
                             auth
                         />
                     ),

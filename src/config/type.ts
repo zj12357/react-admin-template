@@ -2,7 +2,6 @@ import React, { ReactNode } from 'react';
 
 export interface RouteConfig {
     route: RouteIfoType;
-    location: locationInfoType;
 }
 
 export interface RouteIfoType {
@@ -16,8 +15,4 @@ export interface RouteIfoItemType {
     icon?: ReactNode;
     access?: string;
     routes?: RouteIfoItemType[];
-}
-
-export interface locationInfoType {
-    pathname: string;
 }

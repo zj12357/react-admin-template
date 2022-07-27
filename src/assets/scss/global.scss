@@ -14,3 +14,11 @@ body {
 #nprogress .bar {
     background-color: $primary-color !important; //自定义Nprogress颜色
 }
+
+.m-primary-font-color {
+    color: $primary-font-color;
+}
+
+.m-primary-background {
+    background: $primary-color;
+}

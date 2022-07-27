@@ -1,11 +1,18 @@
-import React, { FC, useState, Suspense } from 'react';
+import React, { FC, useState, Suspense, useEffect } from 'react';
 import type { ProSettings } from '@ant-design/pro-components';
 import {
     PageContainer,
     ProLayout,
     SettingDrawer,
 } from '@ant-design/pro-components';
+import { useAppSelector } from '@/store/hooks';
+import {
+    selectDetailPagePath,
+    selectDetailPageMenuList,
+} from '@/store/common/commonSlice';
 import Loading from '@/components/Loading';
+import { LeftOutlined } from '@ant-design/icons';
+import { Button, Space, Tag } from 'antd';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import Header from '../Components/Header';
 import routeInfo from '@/config/route';
@@ -21,6 +28,8 @@ const BasicLayout: FC<BasicLayoutProps> = (props) => {
     );
     const navigate = useNavigate();
     const location = useLocation();
+    const detailPagePath = useAppSelector(selectDetailPagePath);
+    const detailPageMenuList = useAppSelector(selectDetailPageMenuList);
 
     return (
         <div
@@ -30,7 +39,11 @@ const BasicLayout: FC<BasicLayoutProps> = (props) => {
             }}
         >
             <ProLayout
-                {...routeInfo}
+                route={
+                    location.pathname === detailPagePath
+                        ? detailPageMenuList
+                        : routeInfo.route
+                }
                 {...settings}
                 location={{
                     pathname: location.pathname,
@@ -67,6 +80,41 @@ const BasicLayout: FC<BasicLayoutProps> = (props) => {
                     </div>
                 )}
                 rightContentRender={() => <Header></Header>}
+                menuHeaderRender={(logo, title, props) => {
+                    if (location.pathname !== detailPagePath) {
+                        console.log(logo, title, props);
+                        return (
+                            <div>
+                                {logo}
+                                {title}
+                            </div>
+                        );
+                    }
+                    if (props?.collapsed) {
+                        return (
+                            <Space>
+                                <LeftOutlined
+                                    style={{
+                                        fontSize: 18,
+                                        color: '#fff',
+                                    }}
+                                />
+                            </Space>
+                        );
+                    }
+                    return (
+                        <Space direction="vertical">
+                            <Button
+                                icon={<LeftOutlined />}
+                                onClick={() => {
+                                    navigate(-1);
+                                }}
+                            >
+                                返回应用列表
+                            </Button>
+                        </Space>
+                    );
+                }}
             >
                 <PageContainer>
                     <Suspense fallback={<Loading />}>
