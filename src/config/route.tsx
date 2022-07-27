@@ -7,9 +7,16 @@ const route = {
     path: '/',
     routes: [
         {
-            path: '/accountManagement',
+            path: '/account',
             name: '户口管理',
             icon: <SmileOutlined />,
+            routes: [
+                {
+                    path: '/account/customer',
+                    name: '客户户口',
+                    icon: <CrownOutlined />,
+                },
+            ],
         },
         {
             path: '/dashboard',

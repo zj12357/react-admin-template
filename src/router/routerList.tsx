@@ -9,8 +9,8 @@ import LoginPage from '@/pages/Login';
 import BasicLayout from '@/layouts/BasicLayout';
 import UserLayout from '@/layouts/UserLayout';
 
-const AccountManagement = React.lazy(
-    () => import('../pages/AccountManagement'),
+const AccountCustomer = React.lazy(
+    () => import('../pages/AccountManagement/AccountCustomer'),
 );
 const AccountDetail = React.lazy(
     () => import('../pages/AccountManagement/AccountDetail'),
@@ -31,11 +31,15 @@ export const routeProps = (props: any) => {
             ),
             children: [
                 {
-                    path: '/accountManagement',
+                    path: '/account',
+                    element: <Redirect to="/account/customer" />,
+                },
+                {
+                    path: '/account/customer',
                     element: (
                         <WrapperRouteComponent
-                            element={<AccountManagement {...props} />}
-                            titleId="户口管理"
+                            element={<AccountCustomer {...props} />}
+                            titleId="客户户口"
                             auth
                         />
                     ),

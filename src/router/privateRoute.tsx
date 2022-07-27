@@ -11,7 +11,7 @@ const PrivateRoute = (props: RouteProps) => {
 
     return token ? (
         pathname === '/' ? (
-            <Navigate to={{ pathname: '/accountManagement' }} replace />
+            <Navigate to={{ pathname: '/account' }} replace />
         ) : (
             props.element
         )
