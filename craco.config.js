@@ -125,6 +125,12 @@ module.exports = {
     plugins: [
         {
             plugin: CracoAntDesignPlugin,
+            options: {
+                customizeTheme: {
+                    '@primary-color': '#181818',
+                    '@link-color': '#181818',
+                },
+            },
         },
 
         {

@@ -10,7 +10,7 @@ const proSettings: DefaultSettings = {
     layout: 'side',
     contentWidth: 'Fluid',
     headerHeight: 48,
-    primaryColor: '#1890ff',
+    primaryColor: '#181818',
     fixedHeader: true,
     fixSiderbar: true,
     splitMenus: false,

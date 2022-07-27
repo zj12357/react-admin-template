@@ -10,6 +10,8 @@ import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import Header from '../Components/Header';
 import routeInfo from '@/config/route';
 import proSettings from '@/config/defaultSettings';
+import './index.scoped.scss';
+import { key } from 'localforage';
 
 type BasicLayoutProps = {};
 
@@ -35,32 +37,23 @@ const BasicLayout: FC<BasicLayoutProps> = (props) => {
                 }}
                 fixSiderbar
                 fixedHeader
+                title=""
+                logo={
+                    require('@/assets/images/icons/logo-large-icon.svg').default
+                }
                 menuFooterRender={(props) => {
                     return (
-                        <a
-                            style={{
-                                lineHeight: '48rpx',
-                                display: 'flex',
-                                height: 48,
-                                color: 'rgba(255, 255, 255, 0.65)',
-                                alignItems: 'center',
-                            }}
-                            href="https://preview.pro.ant.design/dashboard/analysis"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
+                        <div className="layout-footer">
                             <img
-                                alt="pro-logo"
-                                src="https://procomponents.ant.design/favicon.ico"
-                                style={{
-                                    width: 16,
-                                    height: 16,
-                                    margin: '0 16px',
-                                    marginRight: 10,
-                                }}
+                                alt="logo"
+                                src={
+                                    require('@/assets/images/icons/logo-icon.svg')
+                                        .default
+                                }
+                                className="layout-footer-logo"
                             />
-                            {!props?.collapsed && 'Preview Pro'}
-                        </a>
+                            <span>{!props?.collapsed && '盈樂贵宾会'}</span>
+                        </div>
                     );
                 }}
                 onMenuHeaderClick={() => navigate('/')}
@@ -90,6 +83,12 @@ const BasicLayout: FC<BasicLayoutProps> = (props) => {
                     setSetting(changeSetting);
                 }}
                 disableUrlParams={false}
+                colorList={[
+                    {
+                        key: 'okbet',
+                        color: '#181818',
+                    },
+                ]}
             />
         </div>
     );

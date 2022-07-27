@@ -19,12 +19,12 @@ export const themeOptions: {
 } = {
     // 浅色
     light: {
-        '--m-theme-bg-color': '#1890ff',
+        '--m-theme-bg-color': '#181818',
         '--m-theme-font-color': '#ffffff',
     },
     // 深色
     dark: {
-        '--m-theme-bg-color': '#1a2944',
+        '--m-theme-bg-color': '#222222',
         '--m-theme-font-color': '#ffffff',
     },
 };
