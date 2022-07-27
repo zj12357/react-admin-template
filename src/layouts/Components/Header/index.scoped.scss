@@ -1,10 +1,38 @@
-.header-avatar {
-    cursor: pointer;
+.m-header-box {
+    width: 100%;
+    min-width: 1000px;
 
-    @include flexCenter();
+    @include flexBetweenCenter();
 
-    .header-user-name {
-        margin-left: 10px;
-        font-size: 14px;
+    .m-header-search-commencement {
+        flex: 1;
+
+        @include flexEndCenter();
+
+        .m-header-search {
+            @include flexStartCenter();
+        }
+
+        .m-commencement-btn {
+            margin-right: 40px;
+            margin-left: 100px;
+
+            ::v-deep {
+                .ant-btn {
+                    margin-right: 20px;
+                }
+            }
+        }
+    }
+
+    .header-avatar {
+        cursor: pointer;
+
+        @include flexCenter();
+
+        .header-user-name {
+            margin-left: 10px;
+            font-size: 14px;
+        }
     }
 }

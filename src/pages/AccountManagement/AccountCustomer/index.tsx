@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { ProCard } from '@ant-design/pro-components';
 import { Form, Input, Button } from 'antd';
+import AddCustomer from '../AccountCustomer/AddCustomer';
 import './index.scoped.scss';
 
 type AccountCustomerProps = {};
@@ -58,7 +59,7 @@ const AccountCustomer: FC<AccountCustomerProps> = (props) => {
                     </Form>
                 </div>
                 <div className="m-account-add">
-                    <Button type="primary">新增户口</Button>
+                    <AddCustomer></AddCustomer>
                 </div>
             </div>
         </ProCard>

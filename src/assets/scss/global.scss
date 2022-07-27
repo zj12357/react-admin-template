@@ -15,10 +15,11 @@ body {
     background-color: $primary-color !important; //自定义Nprogress颜色
 }
 
-.m-primary-font-color {
-    color: $primary-font-color;
+//antd  form 横行布局，错误提示会抖动布局
+.ant-form-inline .ant-form-item-with-help {
+    margin-bottom: 0;
 }
 
-.m-primary-background {
-    background: $primary-color;
+.ant-form-inline .ant-form-item-with-help .ant-form-item-explain {
+    position: absolute;
 }

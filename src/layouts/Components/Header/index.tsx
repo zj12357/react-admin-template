@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Avatar, Button, Space, Dropdown, Menu } from 'antd';
+import { Avatar, Button, Dropdown, Menu, Form, Input } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { LogoutOutlined, CodeOutlined, LockOutlined } from '@ant-design/icons';
 import { useAppDispatch } from '@/store/hooks';
@@ -10,6 +10,14 @@ type HeaderProps = {};
 const Header: FC<HeaderProps> = (props) => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+
+    const onFinish = (values: any) => {
+        console.log('Success:', values);
+    };
+
+    const onFinishFailed = (errorInfo: any) => {
+        console.log('Failed:', errorInfo);
+    };
 
     const userLoginOut = () => {
         dispatch(loginOut());
@@ -37,7 +45,41 @@ const Header: FC<HeaderProps> = (props) => {
         />
     );
     return (
-        <div>
+        <div className="m-header-box">
+            <div className="m-header-search-commencement">
+                <div className="m-header-search">
+                    <Form
+                        onFinish={onFinish}
+                        onFinishFailed={onFinishFailed}
+                        layout="inline"
+                    >
+                        <Form.Item
+                            name="username"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your username!',
+                                },
+                            ]}
+                        >
+                            <Input
+                                placeholder="输入户口名/户名/手机号/证件名进行查询"
+                                style={{ width: '300px' }}
+                            />
+                        </Form.Item>
+                        <Form.Item wrapperCol={{ offset: 6, span: 18 }}>
+                            <Button type="primary" htmlType="submit">
+                                搜索
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                </div>
+                <div className="m-commencement-btn">
+                    <Button type="primary">开工列表</Button>
+                    <Button type="primary">来电</Button>
+                </div>
+            </div>
+
             <Dropdown overlay={menu}>
                 <div className="header-avatar">
                     <Avatar
