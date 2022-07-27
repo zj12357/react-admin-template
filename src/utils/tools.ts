@@ -194,3 +194,17 @@ export const isMobile = () => {
         /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i;
     return regMobileAll.test(window.navigator.userAgent);
 };
+
+/**
+ * @Description:  等待时间;
+ * @Param:  ;
+ * @Return:  ;
+ * @Author: Full
+ */
+export const waitTime = (time: number = 100) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(true);
+        }, time);
+    });
+};

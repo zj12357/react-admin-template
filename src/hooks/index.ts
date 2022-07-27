@@ -6,8 +6,8 @@
  */
 
 import useUpdate from './useUpdate';
-import useInitial from './useInitial';
+import useHttp from './useHttp';
 import usePrevious from './usePrevious';
 import useUpdateEffect from './useUpdateEffect';
 import useTheme from './useTheme';
-export { useUpdate, useInitial, usePrevious, useUpdateEffect, useTheme };
+export { useUpdate, useHttp, usePrevious, useUpdateEffect, useTheme };

@@ -26,12 +26,10 @@ export const userSlice = createSlice({
     reducers: {
         loginOut: (state: UserState) => {
             state.token = '';
-            state.status = 'failed';
             authToken.clearToken();
         },
         login: (state: UserState) => {
             state.token = 'token';
-            state.status = 'success';
             authToken.setToken('token');
         },
     },
@@ -59,6 +57,5 @@ export const userSlice = createSlice({
 export const { loginOut, login } = userSlice.actions;
 
 export const selectToken = (state: RootState) => state.user.token;
-export const selectStatus = (state: RootState) => state.user.status;
 
 export default userSlice.reducer;

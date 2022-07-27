@@ -33,7 +33,7 @@ const Header: FC<HeaderProps> = (props) => {
     return (
         <div>
             <Dropdown overlay={menu}>
-                <Avatar size="small" src="https://joeschmoe.io/api/v1/random" />
+                <Avatar size={32} src="https://joeschmoe.io/api/v1/random" />
             </Dropdown>
         </div>
     );

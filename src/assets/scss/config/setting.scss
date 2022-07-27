@@ -5,7 +5,7 @@
     background-size: cover;
 }
 
-@mixin positionAbs {
+@mixin pAbsolute {
     position: absolute;
     top: 0;
     right: 0;
@@ -29,4 +29,4 @@
 $primary-color: #1890ff;
 
 //主题字体颜色
-$primary-font-color: #1890ff; 
+$primary-font-color: #1890ff;
