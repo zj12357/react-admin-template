@@ -11,6 +11,12 @@
         "no-empty-source": null,
         "font-family-no-duplicate-names": null,
         "function-comma-space-after": null,
-        "number-leading-zero": null
+        "number-leading-zero": null,
+        "selector-pseudo-element-no-unknown": [
+            true,
+            {
+                "ignorePseudoElements": ["v-deep"]
+            }
+        ]
     }
 }

@@ -8,6 +8,8 @@ import { login } from '@/store/user/userSlice';
 import { useHttp } from '@/hooks';
 import { userLogin } from '@/api/user';
 import { delay } from 'lodash';
+import { ADMIN_NAME } from '@/common/constants';
+import './index.scoped.scss';
 
 type LoginProps = {};
 
@@ -34,13 +36,14 @@ const Login: FC<LoginProps> = (props) => {
             style={{
                 height: '100%',
             }}
+            className="m-login-box"
         >
             <LoginFormPage
                 backgroundImageUrl={
                     require('@/assets/images/common/login-bg.png').default
                 }
                 logo={require('@/assets/images/common/login-logo.png').default}
-                title="盈樂贵宾会"
+                title={ADMIN_NAME}
                 subTitle="综合管理系统"
                 onFinish={onFinish}
             >
@@ -51,6 +54,7 @@ const Login: FC<LoginProps> = (props) => {
                         prefix: <UserOutlined className={'prefixIcon'} />,
                     }}
                     placeholder={'用户名: admin or user'}
+                    initialValue={'admin'}
                     rules={[
                         {
                             required: true,
@@ -65,6 +69,7 @@ const Login: FC<LoginProps> = (props) => {
                         prefix: <LockOutlined className={'prefixIcon'} />,
                     }}
                     placeholder={'密码: ant.design'}
+                    initialValue={'admin'}
                     rules={[
                         {
                             required: true,

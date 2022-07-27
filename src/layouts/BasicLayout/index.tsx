@@ -11,7 +11,7 @@ import Header from '../Components/Header';
 import routeInfo from '@/config/route';
 import proSettings from '@/config/defaultSettings';
 import './index.scoped.scss';
-import { key } from 'localforage';
+import { ADMIN_NAME } from '@/common/constants';
 
 type BasicLayoutProps = {};
 
@@ -52,7 +52,7 @@ const BasicLayout: FC<BasicLayoutProps> = (props) => {
                                 }
                                 className="layout-footer-logo"
                             />
-                            <span>{!props?.collapsed && '盈樂贵宾会'}</span>
+                            <span>{!props?.collapsed && ADMIN_NAME}</span>
                         </div>
                     );
                 }}
@@ -85,10 +85,12 @@ const BasicLayout: FC<BasicLayoutProps> = (props) => {
                 disableUrlParams={false}
                 colorList={[
                     {
-                        key: 'okbet',
+                        key: 'daybreak',
                         color: '#181818',
                     },
                 ]}
+                hideHintAlert
+                hideCopyButton
             />
         </div>
     );
