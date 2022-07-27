@@ -8,7 +8,7 @@ import './assets/css/base.css';
 import './assets/scss/global.scss';
 
 ReactDOM.render(
-    // <React.StrictMode>
+    // <React.StrictMode> //ant在严格模式下会报错
     <App />,
     // </React.StrictMode>,
     document.getElementById('root'),

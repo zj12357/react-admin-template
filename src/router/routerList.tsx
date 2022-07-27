@@ -41,7 +41,7 @@ export const routeProps = (props: any) => {
                     ),
                 },
                 {
-                    path: '/accountDetail',
+                    path: '/accountDetail/:id',
                     element: (
                         <WrapperRouteComponent
                             element={<AccountDetail {...props} />}

@@ -82,7 +82,6 @@ const BasicLayout: FC<BasicLayoutProps> = (props) => {
                 rightContentRender={() => <Header></Header>}
                 menuHeaderRender={(logo, title, props) => {
                     if (location.pathname !== detailPagePath) {
-                        console.log(logo, title, props);
                         return (
                             <div>
                                 {logo}

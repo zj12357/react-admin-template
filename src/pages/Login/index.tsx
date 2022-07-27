@@ -1,9 +1,10 @@
-import React, { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { FC, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginFormPage, ProFormText } from '@ant-design/pro-components';
 import { message } from 'antd';
-import { useAppDispatch } from '@/store/hooks';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { selectToken } from '@/store/user/userSlice';
 import { login } from '@/store/user/userSlice';
 import { useHttp } from '@/hooks';
 import { userLogin } from '@/api/user';
@@ -15,7 +16,9 @@ type LoginProps = {};
 
 const Login: FC<LoginProps> = (props) => {
     const navigate = useNavigate();
+    const location = useLocation();
     const dispatch = useAppDispatch();
+    const token = useAppSelector(selectToken);
     const { fetchData } = useHttp(userLogin);
 
     const onFinish = async (values: any) => {
@@ -30,6 +33,12 @@ const Login: FC<LoginProps> = (props) => {
             navigate('/', { replace: true });
         }, 100);
     };
+
+    useEffect(() => {
+        if (location.pathname === '/user/login' && token) {
+            navigate('/', { replace: true });
+        }
+    }, [location.pathname]);
 
     return (
         <div

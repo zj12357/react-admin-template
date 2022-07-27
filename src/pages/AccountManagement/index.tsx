@@ -16,8 +16,8 @@ const AccountManagement: FC<AccountManagementProps> = (props) => {
             I am AccountManagement
             <Button
                 onClick={() => {
-                    dispatch(setDetailPagePath('/accountDetail'));
-                    navigate('/accountDetail');
+                    dispatch(setDetailPagePath('/accountDetail/10000'));
+                    navigate('/accountDetail/10000');
                 }}
             >
                 去详情页
