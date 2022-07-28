@@ -51,3 +51,9 @@ yarn 源地址：https://registry.yarnpkg.com
 -   /store:数据管理
 -   /types:请求响应和参数的定义
 -   /utils:通用方法
+
+## git 规范
+
+-   需求分支：feature/\*
+-   bug 分支：bug_fix/\*
+-   merge request: develop-> (feature/_ | bug_fix/_) -> develop -> main

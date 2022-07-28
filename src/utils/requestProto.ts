@@ -67,11 +67,10 @@ service.interceptors.response.use(
                 res.code === 50002 ||
                 res.code === 50003
             ) {
-                message.info('你已被登出，请重新登录').then(() => {
-                    asyncRemoveAllLocalStorage().then(() => {
-                        window.location.href = '/';
-                        // window.location.reload();
-                    });
+                message.info('你已被登出，请重新登录');
+                asyncRemoveAllLocalStorage().then(() => {
+                    window.location.href = '/';
+                    // window.location.reload();
                 });
             }
             return Promise.reject(new Error(res.msg || 'Error'));
