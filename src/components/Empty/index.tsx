@@ -1,24 +1,13 @@
 import React, { FC } from 'react';
-import { Button, Empty } from 'antd';
+import { Empty } from 'antd';
 
-type EmptyProps = {};
+type EmptyProps = {
+    description?: string;
+    image?: string;
+};
 
-const EmptyComponent: FC<EmptyProps> = (props) => {
-    return (
-        <Empty
-            image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
-            imageStyle={{
-                height: 60,
-            }}
-            description={
-                <span>
-                    Customize <a href="#API">Description</a>
-                </span>
-            }
-        >
-            <Button type="primary">Create Now</Button>
-        </Empty>
-    );
+const EmptyComponent: FC<EmptyProps> = ({ description, image }) => {
+    return <Empty description={description} image={image}></Empty>;
 };
 
 export default EmptyComponent;

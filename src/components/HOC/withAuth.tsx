@@ -8,6 +8,9 @@ export default function WithAuth<Props>(
 ) {
     const Component: FC<Props> = (props) => {
         const token = useSelector(selectToken);
+        //获取对应的菜单权限
+        const authMenu = [];
+        const authButton = [];
         return (
             <Fragment>
                 <WrappedComponent {...props} token={token} />

@@ -7,7 +7,7 @@
 import { useState } from 'react';
 import { ResponseData } from '@/types/api/common';
 
-export default function useHttp<T, P>(
+export default function useHttp<T, P = any>(
     api: (params?: P) => Promise<ResponseData<T>>, //请求
     defaultError: string = '请求错误,请稍后重试', //默认错误的提示
 ) {
@@ -17,12 +17,13 @@ export default function useHttp<T, P>(
 
     const fetchData = () => {
         return api()
-            .then((res: any) => {
+            .then((res: ResponseData<T>) => {
                 if (res.code === 200) {
                     setResponse(res);
                 } else {
                     setErrmsg(errMsg || res.msg);
                 }
+                return res;
             })
             .catch(() => {
                 setErrmsg(errMsg);

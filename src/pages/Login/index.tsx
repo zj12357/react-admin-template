@@ -10,6 +10,7 @@ import { useHttp } from '@/hooks';
 import { userLogin } from '@/api/user';
 import { delay } from 'lodash';
 import { ADMIN_NAME } from '@/common/constants';
+import { UserInfo, LoginParams } from '@/types/api/user';
 import './index.scoped.scss';
 
 type LoginProps = {};
@@ -19,7 +20,7 @@ const Login: FC<LoginProps> = (props) => {
     const location = useLocation();
     const dispatch = useAppDispatch();
     const token = useAppSelector(selectToken);
-    const { fetchData } = useHttp(userLogin);
+    const { fetchData } = useHttp<UserInfo, LoginParams>(userLogin);
 
     const onFinish = async (values: any) => {
         console.log('Success:', values);
