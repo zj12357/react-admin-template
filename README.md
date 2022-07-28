@@ -36,6 +36,7 @@ yarn 源地址：https://registry.yarnpkg.com
 -   scss 文件命名格式：\*.scoped.scss
 -   API：编写 api 响应和参数的类型，使用 useHttp 请求数据
 -   数据管理：绝大多数页面的数据流转都是在当前页完成，在页面挂载的时候请求后端接口获取并消费,一些公共的数据存放在 sotre
+-   **_ vscode 安装插件：prettier stylelint eslint _**
 
 ## 文件夹结构
 
