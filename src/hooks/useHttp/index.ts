@@ -4,11 +4,12 @@
  * @autor: Full
  * @date: Do not edit
  */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ResponseData } from '@/types/api/common';
 
 export default function useHttp<T, P = any>(
     api: (params?: P) => Promise<ResponseData<T>>, //请求
+    immediately: boolean = true, //立即执行
     defaultError: string = '请求错误,请稍后重试', //默认错误的提示
 ) {
     const [loading, setLoading] = useState(true);
@@ -32,6 +33,11 @@ export default function useHttp<T, P = any>(
                 setLoading(false);
             });
     };
+    useEffect(() => {
+        if (immediately) {
+            fetchData();
+        }
+    }, [immediately]);
 
     return {
         loading,
