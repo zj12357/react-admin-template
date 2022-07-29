@@ -1,18 +1,34 @@
 import React, { FC } from 'react';
 import { ProCard } from '@ant-design/pro-components';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '@/store/hooks';
 import { Form, Input, Button } from 'antd';
 import AddCustomer from '../AccountCustomer/AddCustomer';
+import { setDetailPagePath } from '@/store/common/commonSlice';
 import './index.scoped.scss';
 
 type AccountCustomerProps = {};
 
 const AccountCustomer: FC<AccountCustomerProps> = (props) => {
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
     const onFinish = (values: any) => {
         console.log('Success:', values);
+        toPage();
     };
 
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
+    };
+
+    const toPage = () => {
+        dispatch(
+            setDetailPagePath({
+                path: '/account/AccountSearchList',
+                title: '返回户口搜索',
+            }),
+        );
+        navigate('/account/AccountSearchList');
     };
     return (
         <ProCard

@@ -7,11 +7,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '..';
 import { getConfig } from '@/api/config';
-import { CommonState, DetailPageMenuListItem } from './types';
+import { CommonState, DetailPageMenuListItem, DetailPageInfo } from './types';
 
 const initialState: CommonState = {
     config: '',
-    detailPagePath: '',
+    detailPageInfo: {} as DetailPageInfo,
     detailPageMenuList: [],
 };
 
@@ -27,9 +27,9 @@ export const commonSlice = createSlice({
     reducers: {
         setDetailPagePath: (
             state: CommonState,
-            action: PayloadAction<string>,
+            action: PayloadAction<DetailPageInfo>,
         ) => {
-            state.detailPagePath = action.payload;
+            state.detailPageInfo = action.payload;
         },
         setDetailPageMenuList: (
             state: CommonState,
@@ -56,8 +56,8 @@ export const commonSlice = createSlice({
 export const { setDetailPagePath, setDetailPageMenuList } = commonSlice.actions;
 
 export const selectConfig = (state: RootState) => state.common.config;
-export const selectDetailPagePath = (state: RootState) =>
-    state.common.detailPagePath;
+export const selectDetailPageInfo = (state: RootState) =>
+    state.common.detailPageInfo;
 export const selectDetailPageMenuList = (state: RootState) =>
     state.common.detailPageMenuList;
 

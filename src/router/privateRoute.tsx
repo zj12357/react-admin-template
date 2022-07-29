@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Navigate } from 'react-router-dom';
-import { RouteProps, useLocation } from 'react-router';
+import { RouteProps, useLocation } from 'react-router-dom';
 import { selectToken } from '@/store/user/userSlice';
 import { useAppSelector } from '@/store/hooks';
 

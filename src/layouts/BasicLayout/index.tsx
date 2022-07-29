@@ -7,7 +7,7 @@ import {
 } from '@ant-design/pro-components';
 import { useAppSelector } from '@/store/hooks';
 import {
-    selectDetailPagePath,
+    selectDetailPageInfo,
     selectDetailPageMenuList,
 } from '@/store/common/commonSlice';
 import Loading from '@/components/Loading';
@@ -28,7 +28,7 @@ const BasicLayout: FC<BasicLayoutProps> = (props) => {
     );
     const navigate = useNavigate();
     const location = useLocation();
-    const detailPagePath = useAppSelector(selectDetailPagePath);
+    const detailPagInfo = useAppSelector(selectDetailPageInfo);
     const detailPageMenuList = useAppSelector(selectDetailPageMenuList);
 
     return (
@@ -40,7 +40,7 @@ const BasicLayout: FC<BasicLayoutProps> = (props) => {
         >
             <ProLayout
                 route={
-                    location.pathname === detailPagePath
+                    location.pathname === detailPagInfo.path
                         ? detailPageMenuList
                         : routeInfo.route
                 }
@@ -81,7 +81,7 @@ const BasicLayout: FC<BasicLayoutProps> = (props) => {
                 )}
                 rightContentRender={() => <Header></Header>}
                 menuHeaderRender={(logo, title, props) => {
-                    if (location.pathname !== detailPagePath) {
+                    if (location.pathname !== detailPagInfo.path) {
                         return (
                             <div>
                                 {logo}
@@ -109,7 +109,7 @@ const BasicLayout: FC<BasicLayoutProps> = (props) => {
                                     navigate(-1);
                                 }}
                             >
-                                返回应用列表
+                                {detailPagInfo.title}
                             </Button>
                         </Space>
                     );

@@ -110,8 +110,8 @@ export default class ErrorScreen extends Component<Props, State> {
 
     private reload = () => window.location.reload();
 
-    private errorListener = () => {
-        this.props.showError(ErrorScreenType.CLIENT_ERROR);
+    private errorListener = (e: any) => {
+        // this.props.showError(ErrorScreenType.CLIENT_ERROR);
     };
 
     private httpErrorResponseInterceptor = (error: {
