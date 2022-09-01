@@ -1,48 +1,51 @@
 /*
  * @version:  ;
  * @description: 请求成功，返回数据，请求失败，异常处理 ;
- * @autor: Full
+ *
  * @date: Do not edit
  */
 import { useState, useEffect } from 'react';
 import { ResponseData } from '@/types/api/common';
+import { useLatest } from '@/hooks';
 
-export default function useHttp<T, P = any>(
-    api: (params?: P) => Promise<ResponseData<T>>, //请求
-    immediately: boolean = true, //立即执行
-    defaultError: string = '请求错误,请稍后重试', //默认错误的提示
+export default function <P = any, T = any>(
+    api: (params: P) => Promise<ResponseData<T>>, //请求
+    successCallback?: (res: ResponseData<T>) => void, //成功回调
+    failCallback?: (res: ResponseData<T>) => void, //失败回调
 ) {
     const [loading, setLoading] = useState(true);
-    const [response, setResponse] = useState({});
-    const [errMsg, setErrmsg] = useState(defaultError);
+    const [response, setResponse] = useState<T>();
+    const [error, setError] = useState();
 
-    const fetchData = () => {
-        return api()
+    const latestLoading = useLatest(loading);
+    const latestResponse = useLatest(response);
+    const latestError = useLatest(error);
+
+    const fetchData = (params = {} as P): Promise<ResponseData<T>> => {
+        return api(params ?? ({} as P))
             .then((res: ResponseData<T>) => {
                 if (res.code === 200) {
-                    setResponse(res);
+                    setResponse(res.data);
+                    successCallback && successCallback(res);
                 } else {
-                    setErrmsg(errMsg || res.msg);
+                    failCallback && failCallback(res);
                 }
-                return res;
+                return res ?? null;
             })
-            .catch(() => {
-                setErrmsg(errMsg);
+            .catch((err) => {
+                setError(err);
+                failCallback && failCallback(err);
+                return err;
             })
             .finally(() => {
                 setLoading(false);
             });
     };
-    useEffect(() => {
-        if (immediately) {
-            fetchData();
-        }
-    }, [immediately]);
 
     return {
-        loading,
-        response,
-        errMsg,
+        loading: latestLoading.current,
+        response: latestResponse.current,
+        error: latestError.current,
         fetchData,
     };
 }

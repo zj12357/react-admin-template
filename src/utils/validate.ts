@@ -2,7 +2,7 @@
  * @description: 正则校验 ;
  * @param {string} str
  * @return {*}
- * @author: Full
+ *
  */
 
 //网址
@@ -46,6 +46,12 @@ export const idNumber =
 
 //小数
 export const isDecimal = /^\d+\.\d+$/;
+
+//负数
+export const isNegativeNumber = /^(-)\d+(\.\d+)?$/;
+
+//正数
+export const isPositiveNumber = /^(\+)?\d+(\.\d+)?$/;
 
 //数字和字母组成
 export const isNumberLetter = /^[A-Za-z0-9]+$/;

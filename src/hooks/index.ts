@@ -1,7 +1,7 @@
 /*
  * @version:  ;
  * @description:  ;
- * @autor: Full
+ *
  * @date: Do not edit
  */
 
@@ -10,4 +10,20 @@ import useHttp from './useHttp';
 import usePrevious from './usePrevious';
 import useUpdateEffect from './useUpdateEffect';
 import useTheme from './useTheme';
-export { useUpdate, useHttp, usePrevious, useUpdateEffect, useTheme };
+import useNewWindow from './useNewWindow';
+import useLatest from './useLatest';
+import useMemoizedFn from './useMemoizedFn';
+import useUnmount from './useUnmount';
+import useWebSocket from './useWebSocket';
+export {
+    useUpdate,
+    useHttp,
+    usePrevious,
+    useUpdateEffect,
+    useTheme,
+    useNewWindow,
+    useLatest,
+    useMemoizedFn,
+    useUnmount,
+    useWebSocket,
+};

@@ -1,15 +1,45 @@
-/*
- * @version:  ;
- * @description:  ;
- * @autor: Full
- * @date: Do not edit
+import type { RcFile } from 'antd/es/upload';
+
+/**
+ * @description: 判断数据类型 ;
+ * @param {*}
+ * @return {*}
  */
+
+export const isObject = (value: unknown): value is Record<any, any> =>
+    value !== null &&
+    Object.prototype.toString.call(value) === '[object Object]';
+export const isFunction = (value: unknown): value is Function =>
+    typeof value === 'function';
+export const isString = (value: unknown): value is string =>
+    typeof value === 'string';
+export const isBoolean = (value: unknown): value is boolean =>
+    typeof value === 'boolean';
+export const isNumber = (value: unknown): value is number =>
+    typeof value === 'number';
+export const isUndef = (value: unknown): value is undefined =>
+    typeof value === 'undefined';
+
+export const isArray = (value: unknown): value is Array<any> =>
+    value !== null &&
+    Object.prototype.toString.call(value) === '[object Array]';
+/**
+ * @Description:  检查时间;
+ * @Param:  ;
+ * @Return:  ;
+ *
+ */
+export function isDate(val: unknown): val is Date {
+    return (
+        Object.prototype.toString.call(val) === '[object Date]' &&
+        !isNaN((val as Date).getTime())
+    );
+}
 
 /**
  * @description: 判断设备 ;
  * @param {*}
  * @return {*}
- * @author: Full
  */
 
 export const os = (function () {
@@ -38,7 +68,6 @@ export const os = (function () {
  * @description: 文档高度 ;
  * @param {*}
  * @return {*}
- * @author: Full
  */
 
 export function getDocumentTop() {
@@ -55,7 +84,6 @@ export function getDocumentTop() {
  * @description: 可视窗口高度 ;
  * @param {*}
  * @return {*}
- * @author: Full
  */
 export function getWindowHeight() {
     let windowHeight = 0;
@@ -72,7 +100,6 @@ export function getWindowHeight() {
  * @description: 滚动条滚动高度 ;
  * @param {*}
  * @return {*}
- * @author: Full
  */
 export function getScrollHeight() {
     let bodyScrollHeight = document.body ? document.body.scrollHeight : 0;
@@ -85,23 +112,9 @@ export function getScrollHeight() {
 }
 
 /**
- * @Description:  检查时间;
- * @Param:  ;
- * @Return:  ;
- * @Author: Full
- */
-export function isDate(val: unknown): val is Date {
-    return (
-        Object.prototype.toString.call(val) === '[object Date]' &&
-        !isNaN((val as Date).getTime())
-    );
-}
-
-/**
  * @Description:  深度克隆;
  * @Param:  ;
  * @Return:  ;
- * @Author: Full
  */
 
 export function isDef<T>(val: T): val is NonNullable<T> {
@@ -135,7 +148,6 @@ export function deepClone<T extends Record<string, any> | null | undefined>(
  * @Description:  生成随机数范围;
  * @Param:  ;
  * @Return:  ;
- * @Author: Full
  */
 export function range(num: number, min: number, max: number): number {
     return Math.min(Math.max(num, min), max);
@@ -145,19 +157,18 @@ export function range(num: number, min: number, max: number): number {
  * @description: class添加，删除，切换 ;
  * @param {*}
  * @return {*}
- * @author: Full
  */
-// Check if an element has a class
+// 检查元素是否有class
 export const hasClass = (ele: HTMLElement, className: string) => {
     return !!ele.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
 };
 
-// Add class to element
+// 元素添加class
 export const addClass = (ele: HTMLElement, className: string) => {
     if (!hasClass(ele, className)) ele.className += ' ' + className;
 };
 
-// Remove class from element
+// 元素移除class
 export const removeClass = (ele: HTMLElement, className: string) => {
     if (hasClass(ele, className)) {
         const reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
@@ -165,7 +176,7 @@ export const removeClass = (ele: HTMLElement, className: string) => {
     }
 };
 
-// Toggle class for the selected element
+// 切换元素的class
 export const toggleClass = (ele: HTMLElement, className: string) => {
     if (!ele || !className) {
         return;
@@ -176,8 +187,8 @@ export const toggleClass = (ele: HTMLElement, className: string) => {
         classString += '' + className;
     } else {
         classString =
-            classString.substr(0, nameIndex) +
-            classString.substr(nameIndex + className.length);
+            classString.substring(0, nameIndex) +
+            classString.substring(nameIndex + className.length);
     }
     ele.className = classString;
 };
@@ -186,7 +197,6 @@ export const toggleClass = (ele: HTMLElement, className: string) => {
  * @Description:  是否是手机设备;
  * @Param:  ;
  * @Return:  ;
- * @Author: Full
  */
 
 export const isMobile = () => {
@@ -199,7 +209,6 @@ export const isMobile = () => {
  * @Description:  等待时间;
  * @Param:  ;
  * @Return:  ;
- * @Author: Full
  */
 export const waitTime = (time: number = 100) => {
     return new Promise((resolve) => {
@@ -208,3 +217,55 @@ export const waitTime = (time: number = 100) => {
         }, time);
     });
 };
+
+/**
+ * @Description:  antd预览图片转base64;
+ * @Param:  ;
+ * @Return:  ;
+ */
+export const getBase64 = (file: RcFile): Promise<string> =>
+    new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = (error) => reject(error);
+    });
+
+/**
+ * @Description: 隐藏中间数字 ;
+ * @Params: ;
+ * @Return:  ;
+ */
+export const hideMiddleNumber = (
+    value: string | number,
+    front: number = 3,
+    behind: number = 4,
+    stars: number = 4,
+): string => {
+    value = String(value);
+    const length = value.length;
+    return (
+        value.substring(0, front) +
+        '*'.repeat(stars) +
+        value.substring(length - behind)
+    );
+};
+
+/**
+ * @Description: 处理金额，保留4位小数不四舍五入，小数结尾不能是0;
+ * @Params:  ;
+ * @Return:  ;
+ */
+export function formatCurrency(num: string, decimal: number = 4) {
+    let index = num.indexOf('.');
+    if (index !== -1) {
+        const splitList = num.split('.');
+        num =
+            splitList[0] +
+            '.' +
+            splitList[1].substring(0, decimal).replace(/0+?$/, '');
+    } else {
+        num = num.substring(0);
+    }
+    return Number(num);
+}

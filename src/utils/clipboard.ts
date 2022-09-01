@@ -2,13 +2,14 @@
  * @description: 复制 ;
  * @param {*}
  * @return {*}
- * @author: Full
+ *
  */
 
 import { MouseEvent } from 'react';
 import Clipboard from 'clipboard';
 import { message } from 'antd';
 
+//如果是svg元素请在外边包一层div，svg元素添加样式 pointerEvents: 'none',
 export const clipboardSuccess = () => message.success('复制成功');
 
 export const clipboardError = () => message.success('复制失败');
