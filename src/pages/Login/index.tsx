@@ -20,7 +20,7 @@ const Login: FC<LoginProps> = (props) => {
     const location = useLocation();
     const dispatch = useAppDispatch();
     const token = useAppSelector(selectToken);
-    const { fetchData } = useHttp<UserInfo, LoginParams>(userLogin, false);
+    const { fetchData } = useHttp<LoginParams, UserInfo>(userLogin);
 
     const onFinish = async (values: any) => {
         console.log('Success:', values);

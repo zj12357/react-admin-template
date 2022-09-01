@@ -4,7 +4,6 @@ import {
     getLocalStorage,
     asyncRemoveAllLocalStorage,
 } from '@/utils/localStorage';
-import jsonBig from 'json-bigint';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 
@@ -63,7 +62,7 @@ service.interceptors.response.use(
             }
             return Promise.reject(new Error(res.msg || 'Error'));
         } else {
-            return jsonBig.parse(jsonBig.stringify(response.data));
+            return response.data;
         }
     },
     (error) => {
